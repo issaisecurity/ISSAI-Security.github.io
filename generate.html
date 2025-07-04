@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator - Tool Tracker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 300px;
+      padding: 5px;
+    }
+    #qrcode-container {
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px dashed #333;
+      display: none;
+      text-align: center;
+      background-color: lightgreen;
+    }
+    #qrcode {
+      margin-bottom: 10px;
+    }
+    .qr-label {
+      font-weight: bold;
+      color: white;
+ 
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🧾 QR Code Generator</h2>
+<p>Fill in the details below:</p>
+
+<label>Date Started Installation:</label>
+<input type="date" id="dateStarted">
+
+<label>Validity:</label>
+<input type="date" id="validity">
+
+<br><br>
+<button onclick="generateQRCode()">Generate QR Code</button>
+<button onclick="downloadQRCode()">Download QR Image</button>
+
+<div id="qrcode-container">
+  <div id="qrcode"></div>
+  <div class="qr-label">🔒 SECURITY CHECKED</div>
+</div>
+
+<script>
+  function generateQRCode() {
+    const dateStarted = document.getElementById("dateStarted").value;
+    const validity = document.getElementById("validity").value;
+
+    if (!dateStarted || !validity) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+
+const qrText =
+`Installed: ${dateStarted} 
+Valid Until: ${validity} 
+Status: SECURITY CHECKED`;
+
+    const container = document.getElementById("qrcode");
+    container.innerHTML = "";
+    new QRCode(container, {
+      text: qrText,
+      width: 200,
+      height: 200
+    });
+
+    document.getElementById("qrcode-container").style.display = "inline-block";
+  }
+
+  function downloadQRCode() {
+    const img = document.querySelector("#qrcode img");
+    if (!img) {
+      alert("Please generate the QR code first.");
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = img.src;
+    link.download = "issai-security-qr.png";
+    link.click();
+  }
+</script>
+
+<p><a href="index.html">← Back to Home</a></p>
+</body>
+</html>
