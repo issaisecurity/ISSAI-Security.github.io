@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tool QR Info - ISSAI SECURITY</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2a2a2a;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 8px 0;
+    }
+    .label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>?? ISSAI SECURITY TOOL INFO</h2>
+  <p><span class="label">Installed:</span> <span id="installed"></span></p>
+  <p><span class="label">Valid Until:</span> <span id="valid"></span></p>
+  <p><span class="label">Location:</span> <span id="location"></span></p>
+  <p><span class="label">Status:</span> <span id="status"></span></p>
+</div>
+
+<script>
+  // Get query parameters from the URL
+  const params = new URLSearchParams(window.location.search);
+
+  document.getElementById('installed').textContent = params.get('installed') || 'N/A';
+  document.getElementById('valid').textContent = params.get('valid') || 'N/A';
+  document.getElementById('location').textContent = params.get('location') || 'N/A';
+  document.getElementById('status').textContent = params.get('status') || 'N/A';
+</script>
+
+</body>
+</html>
