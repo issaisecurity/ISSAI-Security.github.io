@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tool List</title>
+</head>
+<body>
+  <h2>Scanned Tool List</h2>
+  <ul id="tool-list"></ul>
+
+  <script>
+    const tools = JSON.parse(localStorage.getItem("tools") || "[]");
+    const ul = document.getElementById("tool-list");
+
+    tools.forEach(tool => {
+      const li = document.createElement("li");
+      li.textContent = `${tool.tool} (Scanned at ${tool.time})`;
+      ul.appendChild(li);
+    });
+  </script>
+
+  <a href="scan.html">Back to Scan</a>
+</body>
+</html>
