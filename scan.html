@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan Tool</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+  <h2>Scan Tool QR Code</h2>
+  <div id="reader" style="width:300px;"></div>
+
+<script>
+function onScanSuccess(decodedText) {
+alert(`Scanned: ${decodedText}`);
+
+    .then(result => alert("Saved to Google Sheet: " + result))
+    .catch(err => alert("Failed to save: " + err));
+const data = {
+tool: decodedText,
+timestamp: new Date().toLocaleString()
+};
+
+fetch('https://script.google.com/macros/s/AKfycbwf7VrNMxJrRALfgWdUaqKPVqVrsLCbzy290yXtsPEHd84VABVFT8oJsavMkLCU_6nw1w/exec', {
+method: 'POST',
+body: JSON.stringify(data),
+headers: {
+Content-Type': 'application/json'
+}
+})
+.then(res => res.text())
+.then(result => {
+alert("✅ Saved to Google Sheet:\n" + result);
+})
+.catch(err => {
+alert("❌ Failed to save:\n" + err);
+});
+}
+
+const html5QrCode = new Html5Qrcode("reader");
+html5QrCode.start(
+{ facingMode: "environment" },
+{ fps: 10, qrbox: 250 },
+onScanSuccess
+);
+</script>
+
+<p><a href="tools.html">Go to Tool List</a></p>
+</body>
+</html>
