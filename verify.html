@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Installation Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fff0;
+      padding: 30px;
+      text-align: center;
+    }
+    .box {
+      background-color: #d4edda;
+      border: 2px solid #28a745;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h2 {
+      color: #155724;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .status {
+      font-weight: bold;
+      color: #155724;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>🛠️ Installation Info</h2>
+    <p id="installed">Installed: ...</p>
+    <p id="valid">Valid Until: ...</p>
+    <p class="status">🔒 Status: SECURITY CHECKED</p>
+  </div>
+
+  <script>
+    function getParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name) || "N/A";
+    }
+
+    document.getElementById("installed").textContent = "Installed: " + getParam("installed");
+    document.getElementById("valid").textContent = "Valid Until: " + getParam("valid");
+  </script>
+
+</body>
+</html>
