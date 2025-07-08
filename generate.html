@@ -16,8 +16,9 @@
       margin-top: 10px;
     }
     input {
-      width: 300px;
-      padding: 5px;
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
       font-size: 16px;
       margin-bottom: 10px;
     }
@@ -27,27 +28,25 @@
       font-size: 16px;
       cursor: pointer;
     }
-	#qrcode-container {
-  margin-top: 20px;
-  padding: 15px;
-  border: 2px dashed #333;
-  display: none;
-  background-color: lightgreen;
-  text-align: center;
-  width: 100%;
-  max-width: 320px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  box-sizing: border-box;
-
-}
-    #qrcode {
-    margin: 0 auto 10px;
-    width: 200px;
-    height: 200px;
+    #qrcode-container {
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px dashed #333;
+      display: none;
+      background-color: lightgreen;
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      box-sizing: border-box;
     }
-
+    #qrcode {
+      margin: 0 auto 10px;
+      width: 200px;
+      height: 200px;
+    }
     .qr-label {
       font-weight: bold;
       color: white;
@@ -83,12 +82,13 @@
       return;
     }
 
-    const qrText = `https://yourdomain.com/verify?installed=${dateStarted}&valid=${validity}`;
+    const qrUrl = `https://github.com/issaisecurity/ISSAI-Security.github.io?installed=${dateStarted}&valid=${validity}`;
+    
     const container = document.getElementById("qrcode");
     container.innerHTML = "";
 
     new QRCode(container, {
-      text: qrText,
+      text: qrUrl,
       width: 200,
       height: 200
     });
