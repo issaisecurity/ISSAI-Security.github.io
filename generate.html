@@ -44,12 +44,12 @@
     }
     #qrcode {
       margin: 0 auto 10px;
-      width: 200px;
+      width: 100px;
       height: 200px;
     }
     .qr-label {
       font-weight: bold;
-      color: white;
+      color: black;
     }
   </style>
 </head>
@@ -82,7 +82,7 @@
       return;
     }
 
-    const qrText = `https://issaisecurity.github.io/ISSAI-Security.github.io/verify.html?installed=${dateStarted}&valid=${validity}`;
+    const qrUrl = `https://issaisecurity.github.io/ISSAI-Security.github.io/verify.html?installed=${dateStarted}&valid=${validity}`;
 
     const container = document.getElementById("qrcode");
     container.innerHTML = "";
