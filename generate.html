@@ -82,8 +82,8 @@
       return;
     }
 
-    const qrUrl = `https://github.com/issaisecurity/ISSAI-Security.github.io?installed=${dateStarted}&valid=${validity}`;
-    
+    const qrUrl = `https://yourdomain.com/verify.html?installed=${dateStarted}&valid=${validity}`;
+
     const container = document.getElementById("qrcode");
     container.innerHTML = "";
 
@@ -115,7 +115,6 @@
     link.href = dataUrl;
     link.download = "issai-security-qr.png";
 
-    // iOS Safari compatibility
     if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
       window.open(dataUrl, '_blank');
     } else {
