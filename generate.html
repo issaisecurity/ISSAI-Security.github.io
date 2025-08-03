@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +11,6 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       background-color: #f9f9f9;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input {
-      width: 100%;
-      max-width: 400px;
-      padding: 5px;
-      font-size: 16px;
-      margin-bottom: 10px;
     }
     button {
       padding: 10px 20px;
@@ -49,20 +39,14 @@
     }
     .qr-label {
       font-weight: bold;
-      color: darkgreen;
+      color: darkred;
     }
   </style>
 </head>
 <body>
 
 <h2>🧾 Security Tag Generator</h2>
-<p>Fill in the details below:</p>
-
-<label for="dateStarted">Date Started Installation:</label>
-<input type="date" id="dateStarted">
-
-<label for="validity">Validity:</label>
-<input type="date" id="validity">
+<p>This QR code contains static security verification data.</p>
 
 <button onclick="generateQRCode()">Generate QR Code</button>
 <button onclick="downloadQRCode()">Download QR Image</button>
@@ -74,21 +58,13 @@
 
 <script>
   function generateQRCode() {
-    const dateStarted = document.getElementById("dateStarted").value;
-    const validity = document.getElementById("validity").value;
-
-    if (!dateStarted || !validity) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    const qrUrl = `https://issaisecurity.github.io/ISSAI-Security.github.io/verify.html?installed=${dateStarted}&valid=${validity}`;
+    const qrText = `Security Checked\nValid Until December 2025`;
 
     const container = document.getElementById("qrcode");
     container.innerHTML = "";
 
     new QRCode(container, {
-      text: qrUrl,
+      text: qrText,
       width: 200,
       height: 200
     });
@@ -113,7 +89,7 @@
 
     const link = document.createElement('a');
     link.href = dataUrl;
-    link.download = "issai-security-qr.png";
+    link.download = "security-checked-qr.png";
 
     if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
       window.open(dataUrl, '_blank');
@@ -123,6 +99,5 @@
   }
 </script>
 
-<p><a href="index.html">← Back to Home</a></p>
 </body>
 </html>
