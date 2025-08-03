@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Installation Verification</title>
+  <title>Security Tag Verified</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -31,25 +32,36 @@
       color: #155724;
       margin-top: 20px;
     }
+    .expired {
+      color: red;
+    }
   </style>
 </head>
 <body>
 
   <div class="box">
-    <h2>🛠️ Installation Info</h2>
-    <p id="installed">Installed: ...</p>
-    <p id="valid">Valid Until: ...</p>
-    <p class="status">🔒 Status: SECURITY CHECKED</p>
+    <h2>✅ Tool Security Verification</h2>
+    <p>Security Checked</p>
+    <p>Valid Until December 2025</p>
+    <p class="status" id="scan-time">🕒 Scan Time: ...</p>
+    <p class="status" id="expiry-status">⏳ Expiry Status: Checking...</p>
+    <p class="status">🔒 Status: SECURED</p>
   </div>
 
   <script>
-    function getParam(name) {
-      const url = new URL(window.location.href);
-      return url.searchParams.get(name) || "N/A";
-    }
+    // Show scan time
+    const scanTime = new Date();
+    document.getElementById("scan-time").textContent = "🕒 Scan Time: " + scanTime.toLocaleString();
 
-    document.getElementById("installed").textContent = "Installed: " + getParam("installed");
-    document.getElementById("valid").textContent = "Valid Until: " + getParam("valid");
+    // Check expiration
+    const expiryStatus = document.getElementById("expiry-status");
+    const expiryDate = new Date("2025-12-31");
+
+    if (scanTime > expiryDate) {
+      expiryStatus.innerHTML = "⛔ Expiry Status: <span class='expired'>EXPIRED</span>";
+    } else {
+      expiryStatus.innerHTML = "✅ Expiry Status: <span>VALID</span>";
+    }
   </script>
 
 </body>
